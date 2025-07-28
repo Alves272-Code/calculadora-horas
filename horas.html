@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Calculadora de Horas Trabalhadas</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 400px; margin: 40px auto; padding: 20px; background: #f7f7f7; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1);}
+    h2 { text-align:center;}
+    input, button { width: 100%; padding: 10px; margin-top:10px; border-radius:6px; border: 1px solid #ccc;}
+    #resultado { margin-top: 20px; text-align:center; font-weight:bold; font-size:1.2em;}
+    a {display: block; margin-top: 15px; text-align:center; text-decoration:none; color:#333;}
+  </style>
+</head>
+<body>
+  <h2>Calculadora de Horas Trabalhadas</h2>
+  <label>Hora de entrada:</label>
+  <input type="time" id="entrada" />
+  <label>Hora de saída:</label>
+  <input type="time" id="saida" />
+  <label>Pausa (minutos):</label>
+  <input type="number" id="pausa" value="0" min="0" />
+  <button onclick="calcularHoras()">Calcular</button>
+  <div id="resultado"></div>
+  <a href="index.html">⬅ Voltar ao menu</a>
+  <script>
+    function calcularHoras() {
+      const entrada = document.getElementById('entrada').value;
+      const saida = document.getElementById('saida').value;
+      const pausa = parseInt(document.getElementById('pausa').value) || 0;
+
+      if (!entrada || !saida) {
+        document.getElementById('resultado').innerText = 'Por favor preenche todos os campos.';
+        return;
+      }
+      const horaEntrada = new Date(`1970-01-01T${entrada}:00`);
+      const horaSaida = new Date(`1970-01-01T${saida}:00`);
+      let diffMs = horaSaida - horaEntrada;
+      if (diffMs < 0) diffMs += 24 * 60 * 60 * 1000; // passa da meia-noite
+      const totalMinutos = diffMs / 60000 - pausa;
+      if(totalMinutos < 0) {
+        document.getElementById('resultado').innerText = 'Erro: Pausa maior que o tempo trabalhado.';
+        return;
+      }
+      const horas = Math.floor(totalMinutos / 60);
+      const minutos = totalMinutos % 60;
+      document.getElementById('resultado').innerText = `Total: ${horas}h ${minutos}min`;
+    }
+  </script>
+</body>
+</html>
