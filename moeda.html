@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Conversor de Moeda EUR/USD</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 400px; margin: 40px auto; padding: 20px; background: #f7f7f7; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1);}
+    h2 { text-align:center;}
+    input, select, button { width: 100%; padding: 10px; margin-top:10px; border-radius:6px; border: 1px solid #ccc;}
+    #resultado { margin-top: 20px; text-align:center; font-weight:bold; font-size:1.2em;}
+    a {display: block; margin-top: 15px; text-align:center; text-decoration:none; color:#333;}
+  </style>
+</head>
+<body>
+  <h2>Conversor de Moeda EUR/USD</h2>
+  <label>Valor:</label>
+  <input type="number" id="valor" min="0" step="0.01" />
+  <label>Converter de:</label>
+  <select id="de">
+    <option value="EUR">Euro (EUR)</option>
+    <option value="USD">Dólar (USD)</option>
+  </select>
+  <label>Para:</label>
+  <select id="para">
+    <option value="USD">Dólar (USD)</option>
+    <option value="EUR">Euro (EUR)</option>
+  </select>
+  <button onclick="converterMoeda()">Converter</button>
+  <div id="resultado"></div>
+  <a href="index.html">⬅ Voltar ao menu</a>
+  <script>
+    const taxaEURUSD = 1.1; // Exemplo fixo: 1 EUR = 1.1 USD
+    const taxaUSDEUR = 1 / taxaEURUSD;
+    function converterMoeda() {
+      const valor = parseFloat(document.getElementById('valor').value);
+      const de = document.getElementById('de').value;
+      const para = document.getElementById('para').value;
+      if (isNaN(valor)) {
+        document.getElementById('resultado').innerText = 'Por favor insere um valor válido.';
+        return;
+      }
+      if(de === para) {
+        document.getElementById('resultado').innerText = 'Escolhe moedas diferentes para converter.';
+        return;
+      }
+      let resultado;
+      if (de === 'EUR' && para === 'USD') resultado = valor * taxaEURUSD;
+      else if (de === 'USD' && para === 'EUR') resultado = valor * taxaUSDEUR;
+      document.getElementById('resultado').innerText = `${valor.toFixed(2)} ${de} = ${resultado.toFixed(2)} ${para}`;
+    }
+  </script>
+</body>
+</html>
