@@ -2,93 +2,175 @@
 <html lang="pt">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Kit de Utilidades Online</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
   <style>
+    :root {
+      --cor-primaria: #4a90e2;
+      --cor-secundaria: #f5f7fa;
+      --cor-texto: #333;
+      --sombra: rgba(0, 0, 0, 0.1);
+      --borda-radius: 15px;
+      --transicao: 0.3s ease;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
-      font-family: Arial, sans-serif;
-      background: #f1f1f1;
       margin: 0;
-      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background: var(--cor-secundaria);
+      color: var(--cor-texto);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
+
     header {
-      background: #333;
-      color: #fff;
-      padding: 20px;
+      background: var(--cor-primaria);
+      color: white;
+      padding: 2rem 1rem;
       text-align: center;
+      box-shadow: 0 3px 10px var(--sombra);
     }
+
+    header h1 {
+      margin: 0;
+      font-weight: 600;
+      font-size: 2.4rem;
+      letter-spacing: 1px;
+    }
+
+    header p {
+      margin: 0.5rem 0 0;
+      font-weight: 400;
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
     main {
-      max-width: 800px;
-      margin: 40px auto;
+      flex: 1;
+      max-width: 960px;
+      margin: 3rem auto 4rem;
+      padding: 0 1rem;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      padding: 0 20px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.8rem;
     }
+
     .card {
-      background: #fff;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      background: white;
+      border-radius: var(--borda-radius);
+      box-shadow: 0 4px 15px var(--sombra);
+      padding: 1.8rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       text-align: center;
-      transition: transform 0.2s;
+      transition: transform var(--transicao), box-shadow var(--transicao);
+      cursor: pointer;
+      user-select: none;
     }
+
     .card:hover {
-      transform: scale(1.03);
+      transform: translateY(-6px);
+      box-shadow: 0 10px 25px var(--sombra);
     }
+
+    .card svg {
+      width: 48px;
+      height: 48px;
+      fill: var(--cor-primaria);
+      margin-bottom: 0.8rem;
+      flex-shrink: 0;
+    }
+
     .card a {
-      display: block;
       text-decoration: none;
-      color: #333;
-      font-weight: bold;
+      color: var(--cor-primaria);
+      font-weight: 600;
+      font-size: 1.15rem;
+      flex-grow: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
     }
+
     footer {
       text-align: center;
-      padding: 20px;
-      font-size: 0.9em;
+      padding: 1rem 1rem 2rem;
+      font-size: 0.9rem;
       color: #777;
+    }
+
+    @media (max-width: 480px) {
+      header h1 {
+        font-size: 1.8rem;
+      }
+      main {
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Kit de Utilidades Online</h1>
-    <p>Ferramentas simples e úteis para o teu dia a dia</p>
-  </header>
-  <main>
-    <div class="card">
-      <a href="horas.html">Calculadora de Horas Trabalhadas</a>
-    </div>
-    <div class="card">
-      <a href="imc.html">Calculadora de IMC</a>
-    </div>
-    <div class="card">
-      <a href="percentagens.html">Calculadora de Percentagens</a>
-    </div>
-    <div class="card">
-      <a href="dias.html">Contador de Dias Entre Datas</a>
-    </div>
-    <div class="card">
-      <a href="combustivel.html">Calculadora de Combustível</a>
-    </div>
-    <div class="card">
-      <a href="moeda.html">Conversor de Moeda</a>
-    </div>
-    <div class="card">
-      <a href="senha.html">Gerador de Senhas Fortes</a>
-    </div>
-    <div class="card">
-      <a href="cronometro.html">Cronómetro Online</a>
-    </div>
-    <div class="card">
-      <a href="lista.html">Gerador de Lista de Compras</a>
-    </div>
-    <div class="card">
-      <a href="contador.html">Contador Regressivo para Eventos</a>
-    </div>
-  </main>
-  <footer>
-    Criado por ti ✨ | Código aberto e simples
-  </footer>
+
+<header>
+  <h1>Kit de Utilidades Online</h1>
+  <p>Ferramentas simples e úteis para o teu dia a dia</p>
+</header>
+
+<main>
+  <div class="card" tabindex="0">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10v2H7V2zm-2 5h14v2H5V7zm0 4h14v2H5v-2zm0 4h14v2H5v-2zm0 4h14v2H5v-2z"/></svg>
+    <a href="horas.html">Calculadora de Horas Trabalhadas</a>
+  </div>
+  <div class="card" tabindex="0">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" stroke-width="2" fill="none" stroke="currentColor"/><path d="M12 6v6l4 2" stroke-width="2" fill="none" stroke="currentColor"/></svg>
+    <a href="imc.html">Calculadora de IMC</a>
+  </div>
+  <div class="card" tabindex="0">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v2H4zM4 11h10v2H4zM4 16h16v2H4z"/></svg>
+    <a href="percentagens.html">Calculadora de Percentagens</a>
+  </div>
+  <div class="card" tabindex="0">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 3h-1V2h-2v1H8V2H6v1H5c-1.1 0-2 .9-2 2v15c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM5 20V8h14v12H5z"/></svg>
+    <a href="dias.html">Contador de Dias Entre Datas</a>
+  </div>
+  <div class="card" tabindex="0">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 19h12v-2H6v2zm7-7H5v-2h8V6h2v4h3v2h-5z"/></svg>
+    <a href="combustivel.html">Calculadora de Combustível</a>
+  </div>
+  <div class="card" tabindex="0">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v2M5 12H3m18 0h-2M12 19v2M7.07 7.07l-1.41-1.41M18.36 18.36l-1.41-1.41M7.07 16.93l-1.41 1.41M18.36 5.64l-1.41 1.41"/></svg>
+    <a href="moeda.html">Conversor de Moeda</a>
+  </div>
+  <div class="card" tabindex="0">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+    <a href="senha.html">Gerador de Senhas Fortes</a>
+  </div>
+  <div class="card" tabindex="0">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+    <a href="cronometro.html">Cronómetro Online</a>
+  </div>
+  <div class="card" tabindex="0">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 13h2v-2H3v2zm4 0h14v-2H7v2zm0 4h14v-2H7v2zm0-8h14V7H7v2zm-4 8h2v-2H3v2z"/></svg>
+    <a href="lista.html">Gerador de Lista de Compras</a>
+  </div>
+  <div class="card" tabindex="0">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm1 15h-2v-6h2v6zm0 4h-2v-2h2v2z"/></svg>
+    <a href="contador.html">Contador Regressivo para Eventos</a>
+  </div>
+</main>
+
+<footer>
+  Criado por ti ✨ | Código aberto e simples
+</footer>
+
 </body>
 </html>
