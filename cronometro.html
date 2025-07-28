@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cronómetro Online</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 400px; margin: 40px auto; padding: 20px; background: #f7f7f7; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1);}
+    h2 { text-align:center; margin-bottom: 20px;}
+    #display { font-size: 3em; text-align:center; margin-bottom: 20px;}
+    button { width: 32%; padding: 10px; margin: 0 1%; font-size: 1em; border-radius: 6px; border: 1px solid #ccc; cursor: pointer;}
+    a {display: block; margin-top: 20px; text-align:center; text-decoration:none; color:#333;}
+  </style>
+</head>
+<body>
+  <h2>Cronómetro Online</h2>
+  <div id="display">00:00:00</div>
+  <button onclick="start()">Iniciar</button>
+  <button onclick="pause()">Pausar</button>
+  <button onclick="reset()">Reset</button>
+  <a href="index.html">⬅ Voltar ao menu</a>
+  <script>
+    let segundos = 0;
+    let intervalo = null;
+
+    function formatarTempo(seg) {
+      const h = Math.floor(seg / 3600);
+      const m = Math.floor((seg % 3600) / 60);
+      const s = seg % 60;
+      return [h,m,s].map(n => n.toString().padStart(2,'0')).join(':');
+    }
+
+    function start() {
+      if (intervalo) return;
+      intervalo = setInterval(() => {
+        segundos++;
+        document.getElementById('display').innerText = formatarTempo(segundos);
+      }, 1000);
+    }
+
+    function pause() {
+      clearInterval(intervalo);
+      intervalo = null;
+    }
+
+    function reset() {
+      pause();
+      segundos = 0;
+      document.getElementById('display').innerText = '00:00:00';
+    }
+  </script>
+</body>
+</html>
